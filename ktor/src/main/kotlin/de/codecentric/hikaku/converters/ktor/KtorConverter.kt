@@ -1,7 +1,7 @@
 package de.codecentric.hikaku.converters.ktor
 
 import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.converter.AbstractEndpointConverter
+import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.ktor.extensions.httpMethod
 import de.codecentric.hikaku.endpoints.Endpoint
 import io.ktor.routing.HttpMethodRouteSelector
