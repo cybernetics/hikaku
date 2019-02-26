@@ -7,7 +7,7 @@ import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class KtorHttpMethodTest {
+class KtorConverterHttpMethodTest {
 
     @Test
     fun `extract all http methods using http method providing the path`() {
