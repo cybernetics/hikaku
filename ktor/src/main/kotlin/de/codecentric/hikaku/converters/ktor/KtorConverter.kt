@@ -12,7 +12,7 @@ import io.ktor.routing.Routing
  * Extracts and converts [Endpoint]s from ktor [Routing] object.
  * @param routing Ktor routing information.
  */
-class KtorConverter(private val routing: Routing): AbstractEndpointConverter() {
+class KtorConverter(private val routing: Routing) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures()
 
