@@ -3,6 +3,7 @@ package de.codecentric.hikaku.converters.ktor
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.ktor.extensions.httpMethod
+import de.codecentric.hikaku.converters.ktor.extensions.pathParameters
 import de.codecentric.hikaku.endpoints.Endpoint
 import io.ktor.routing.HttpMethodRouteSelector
 import io.ktor.routing.Route
@@ -31,14 +32,27 @@ class KtorConverter(private val routing: Routing) : AbstractEndpointConverter() 
         }
 
         if (route.selector is HttpMethodRouteSelector) {
+            val normalizedPath = normalizePath(route.parent.toString())
+
             return listOf(
                     Endpoint(
-                            route.parent.toString(),
-                            (route.selector as HttpMethodRouteSelector).httpMethod()
+                            path = normalizedPath,
+                            httpMethod = (route.selector as HttpMethodRouteSelector).httpMethod(),
+                            pathParameters = route.pathParameters()
                     )
             )
         }
 
         return emptyList()
     }
+
+    /**
+     * Removes ? from optional path parameters, because an optional path parameter will lead to two endpoints.
+     * Example:
+     *      /todos/{id?}
+     * will become
+     *      /todos
+     *      /todos/{id}
+     */
+    private fun normalizePath(path: String) = path.replace("?", "")
 }
