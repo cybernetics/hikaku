@@ -5,7 +5,7 @@ import io.ktor.routing.PathSegmentOptionalParameterRouteSelector
 import io.ktor.routing.PathSegmentParameterRouteSelector
 import io.ktor.routing.Route
 
-fun Route.pathParameters() = findPathParameter(this).toSet()
+fun Route.hikakuPathParameters() = findPathParameter(this).toSet()
 
 private fun findPathParameter(route: Route): List<PathParameter> {
 
