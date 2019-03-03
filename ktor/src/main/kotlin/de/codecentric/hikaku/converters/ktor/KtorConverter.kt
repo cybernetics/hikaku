@@ -1,6 +1,7 @@
 package de.codecentric.hikaku.converters.ktor
 
 import de.codecentric.hikaku.SupportedFeatures
+import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.ktor.extensions.hikakuHttpMethod
 import de.codecentric.hikaku.converters.ktor.extensions.hikakuPathParameters
@@ -15,7 +16,9 @@ import io.ktor.routing.Routing
  */
 class KtorConverter(private val routing: Routing) : AbstractEndpointConverter() {
 
-    override val supportedFeatures = SupportedFeatures()
+    override val supportedFeatures = SupportedFeatures(
+            Feature.PathParameter
+    )
 
     override fun convert(): Set<Endpoint> {
         return routing.children.flatMap {
